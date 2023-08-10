@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
     // Kelas
     Route::get('/kelas', [ClassroomController::class, 'index'])->name('kelas.index');
+    Route::put('/kelas', [ClassroomController::class, 'update'])->name('kelas.update');
 });
 
 require __DIR__.'/auth.php';

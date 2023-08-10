@@ -17,43 +17,43 @@
                 <table>
                     <tr>
                         <td class="text-bold">Nama Kelas</td>
-                        <td>: {{ $classroom->nama ?? "-" }}</td>
+                        <td id="detailNamaKelas">: {{ $classroom->nama ?? "-" }}</td>
                     </tr>
                     <tr>
                         <td class="text-bold">Jurusan Kelas</td>
-                        <td>: {{ $classroom->jurusan ?? "-" }}</td>
+                        <td id="detailJurusanKelas">: {{ $classroom->jurusan ?? "-" }}</td>
                     </tr>
                     <tr>
                         <td class="text-bold">Nama Sekolah</td>
-                        <td>: {{ $classroom->nama_sekolah ?? "-" }}</td>
+                        <td id="detailNamaSekolah">: {{ $classroom->nama_sekolah ?? "-" }}</td>
                     </tr>
                     <tr>
                         <td class="text-bold">NPSN</td>
-                        <td>: {{ $classroom->npsn ?? "-" }}</td>
+                        <td id="detailNpsn">: {{ $classroom->npsn ?? "-" }}</td>
                     </tr>
                     <tr>
                         <td class="text-bold">Akreditasi</td>
-                        <td>: {{ $classroom->akreditasi ?? "-" }}</td>
+                        <td id="detailAkreditasi">: {{ $classroom->akreditasi ?? "-" }}</td>
                     </tr>
                     <tr>
                         <td class="text-bold">Alamat Sekolah</td>
-                        <td>: {{ $classroom->alamat ?? "-" }}</td>
+                        <td id="detailAlamat">: {{ $classroom->alamat ?? "-" }}</td>
                     </tr>
                     <tr>
                         <td class="text-bold">Nama Kepala Sekolah</td>
-                        <td>: {{ $classroom->nama_kepala_sekolah ?? "-" }}</td>
+                        <td id="detailNamaKepalaSekolah">: {{ $classroom->nama_kepala_sekolah ?? "-" }}</td>
                     </tr>
                     <tr>
                         <td class="text-bold">NIP Kepala Sekolah</td>
-                        <td>: {{ $classroom->nip_kepala_sekolah ?? "-" }}</td>
+                        <td id="detailNipKepalaSekolah">: {{ $classroom->nip_kepala_sekolah ?? "-" }}</td>
                     </tr>
                     <tr>
                         <td class="text-bold">Logo Sekolah</td>
-                        <td><br>
+                        <td id="detailLogoSekolah">
                             @if ($classroom->logo_sekolah == null)
                                 : Tidak ada logo
                             @else
-                                <img src="{{ asset('assets/img/'.$classroom->logo_sekolah) }}" width="100" alt="logo-sekolah">
+                                <img src="{{ asset('storage/'.$classroom->logo_sekolah) }}" width="100" alt="logo-sekolah">
                             @endif 
                         </td>
                     </tr>
@@ -70,11 +70,13 @@
           <div class="col-12 d-none" id="editDataArea">
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-secondary" id="btnBatal">Batal</button>
+                    <button class="btn btn-secondary" id="btnKembali">Kembali</button>
                     <button class="btn btn-primary" id="btnSimpan">Simpan</button>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{ route('kelas.update') }}" method="POST" id="formEdit" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group">
@@ -105,7 +107,7 @@
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group">
                                     <label for="npsn">NPSN Sekolah</label>
-                                    <input type="text" value="{{ $classroom->npsn ?? '' }}" class="form-control" id="npsn" id="npsn" placeholder="Masukkan NPSN sekolah">
+                                    <input type="text" value="{{ $classroom->npsn ?? '' }}" class="form-control" id="npsn" name="npsn" placeholder="Masukkan NPSN sekolah">
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
@@ -117,10 +119,10 @@
                                     <label for="akreditasiSekolah">Akreditasi Sekolah</label>
                                     <select class="form-control" id="akreditasiSekolah" name="akreditasiSekolah">
                                         <option value="">Pilih akreditasi</option>
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="C">C</option>
-                                        <option value="NO">Belum diketahui</option>
+                                        <option value="A" {{ $classroom->akreditasi == "A" ? "selected" : "" }}>A</option>
+                                        <option value="B" {{ $classroom->akreditasi == "B" ? "selected" : "" }}>B</option>
+                                        <option value="C" {{ $classroom->akreditasi == "C" ? "selected" : "" }}>C</option>
+                                        <option value="NO" {{ $classroom->akreditasi == "NO" ? "selected" : "" }}>Belum diketahui</option>
                                     </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
@@ -161,7 +163,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label>Alamat Sekolah</label>
-                                    <textarea class="form-control" name="alamatSekolah" placeholder="Masukkan alamat sekolah">{{ $classroom->alamat ?? '' }}</textarea>
+                                    <textarea class="form-control" name="alamatSekolah" id="alamatSekolah" placeholder="Masukkan alamat sekolah">{{ $classroom->alamat ?? '' }}</textarea>
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
@@ -183,20 +185,35 @@
 
     <script>
         $(document).ready(() => {
-
+            
             let detailDataArea = $("#detailDataArea")[0];
             let editDataArea = $("#editDataArea")[0];
-            let btnBatal = $("#btnBatal")[0];
+            let btnKembali = $("#btnKembali")[0];
             let btnSimpan = $("#btnSimpan")[0];
             let btnEdit = $("#btnEdit")[0];
 
 
+
+            // detail area
+            let detailNamaKelas = $("#detailNamaKelas")[0];
+            let detailJurusanKelas = $("#detailJurusanKelas")[0];
+            let detailNamaSekolah = $("#detailNamaSekolah")[0];
+            let detailNpsn = $("#detailNpsn")[0];
+            let detailAlamat = $("#detailAlamat")[0];
+            let detailAkreditasi = $("#detailAkreditasi")[0];
+            let detailNamaKepalaSekolah = $("#detailNamaKepalaSekolah")[0];
+            let detailNipKepalaSekolah = $("#detailNipKepalaSekolah")[0];
+            let detailLogoSekolah = $("#detailLogoSekolah")[0];
+
+
             // Input form
+            let formEdit = $("#formEdit")[0];
             let inputNamaKelas = $("#namaKelas")[0];
             let inputJurusanKelas = $("#jurusanKelas")[0];
             let inputNamaSekolah = $("#namaSekolah")[0];
             let inputNpsnSekolah = $("#npsn")[0];
             let inputAkreditasiSekolah = $("#akreditasiSekolah")[0];
+            let inputAlamatSekolah = $("#alamatSekolah")[0];
             let inputNamaKepalaSekolah = $("#namaKepalaSekolah")[0];
             let inputNipKepalaSekolah = $("#nipKepalaSekolah")[0];
 
@@ -212,11 +229,11 @@
 
 
             // simpan value awal nilai input form
-            const valueNamaKelas = inputNamaKelas.value.trim();
-            const valueJurusanKelas = inputJurusanKelas.value.trim();
-            const valueNamaSekolah = inputNamaSekolah.value.trim();
-            const valueNpsnSekolah = inputNpsnSekolah.value.trim();
-            const valueAkreditasiSekolah = inputAkreditasiSekolah.value.trim();
+            let valueNamaKelas = inputNamaKelas.value.trim();
+            let valueJurusanKelas = inputJurusanKelas.value.trim();
+            let valueNamaSekolah = inputNamaSekolah.value.trim();
+            let valueNpsnSekolah = inputNpsnSekolah.value.trim();
+            let valueAkreditasiSekolah = inputAkreditasiSekolah.value.trim();
 
 
             btnEdit.addEventListener("click", () => {
@@ -225,7 +242,7 @@
 
             });
 
-            btnBatal.addEventListener("click", () => {
+            btnKembali.addEventListener("click", () => {
                 if (valueNamaKelas == "" || valueJurusanKelas == "" || valueNamaSekolah == "" || valueNpsnSekolah == "" || valueAkreditasiSekolah == "") {
                     Swal.fire({
                         title: 'Anda yakin?',
@@ -244,11 +261,14 @@
                             editDataArea.classList.add("d-none");
                         }
                     })
+                } else {
+                    detailDataArea.classList.remove("d-none");
+                    editDataArea.classList.add("d-none");
                 }
             });
             
             
-            btnSimpan.addEventListener("click", () => {
+            btnSimpan.addEventListener("click", async () => {
 
                 let errNamaKelas = "";
                 let errJurusanKelas = "";
@@ -402,9 +422,85 @@
                     inputLogoSekolah.nextElementSibling.nextElementSibling.innerText = errLogoSekolah;
                 }
 
+                if (errNamaKelas == "" && errJurusanKelas == "" && errNamaSekolah == "" && errNpsnSekolah == "" && errLogoSekolah == "" && errNpsnSekolah == "" && errAkreditasiSekolah == "" && errNamaKepalaSekolah == "" & errNipKepalaSekolah == "") {
+
+                    loadingAnimation.classList.remove("d-none");
+
+                    const formData = new FormData();
+                    formData.append("namaKelas", inputNamaKelas.value.trim());
+                    formData.append("jurusanKelas", inputJurusanKelas.value.trim());
+                    formData.append("namaSekolah", inputNamaSekolah.value.trim());
+                    formData.append("npsn", inputNpsnSekolah.value.trim());
+                    formData.append("akreditasiSekolah", inputAkreditasiSekolah.value.trim());
+                    formData.append("alamatSekolah", inputAlamatSekolah.value.trim());
+                    formData.append("namaKepalaSekolah", inputNamaKepalaSekolah.value.trim());
+                    formData.append("nipKepalaSekolah", inputNipKepalaSekolah.value.trim());
+                    formData.append("logoSekolah", inputLogoSekolah.files[0]);
+                    formData.append("_method", "PUT");
+
+                    await fetch("/kelas", {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: formData,
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success && result.code == 200) {
+
+                            // update value form
+                            valueNamaKelas = result.data.nama;
+                            valueJurusanKelas = result.data.jurusan;
+                            valueNamaSekolah = result.data.nama_sekolah;
+                            valueNpsnSekolah = result.data.npsn;
+                            valueAkreditasiSekolah = result.data.akreditasi;
+
+                            // update detail area
+                            detailNamaKelas.innerText = (result.data.nama == null) ? ": -" : ": "+ result.data.nama;
+                            detailJurusanKelas.innerText = (result.data.jurusan == null) ? ": -" : ": "+ result.data.jurusan;
+                            detailNamaSekolah.innerText = (result.data.nama_sekolah == null) ? ": -" : ": "+ result.data.nama_sekolah;
+                            detailAkreditasi.innerText = (result.data.akreditasi == null) ? ": -" : ": "+ result.data.akreditasi;
+                            detailNpsn.innerText = (result.data.npsn == null) ? ": -" : ": "+ result.data.npsn;
+                            detailAlamat.innerText = (result.data.alamat == null) ? ": -" : ": "+ result.data.alamat;
+                            detailNamaKepalaSekolah.innerText = (result.data.nama_kepala_sekolah == null) ? ": -" : ": "+ result.data.nama_kepala_sekolah;
+                            detailNipKepalaSekolah.innerText = (result.data.nip_kepala_sekolah == null) ? ": -" : ": "+ result.data.nip_kepala_sekolah;
+                            if (result.data.logo_sekolah == null) {
+                                detailLogoSekolah.innerText = ": Tidak ada logo";
+                            } else {
+                                detailLogoSekolah.innerHTML = '<img src="' + '{{ asset("storage/") }}' + '/'+ result.data.logo_sekolah + '" width="100" alt="logo-sekolah">';
+                            }
+
+                            // clear innert text logo sekolah
+                            inputLogoSekolah.nextElementSibling.innerText = "Pilih file";
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil!',
+                                text: 'Data berhasil di edit'
+                            });
+
+                        } else if (result.code == 400) {
+                            Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: 'Validasi gagal, silahkan cek kembali data yang anda isi!'
+                        });
+                        }
+                    })
+                    .catch(e => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: 'Sistem bermasalah, silahkan coba lagi nanti!'
+                        });
+                    });
+
+                    loadingAnimation.classList.add("d-none");
+                }
+
             });
             
-
 
         });
     </script>

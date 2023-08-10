@@ -19,6 +19,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Ramsey\Uuid\Uuid;
+use App\Helper\ResponseJsonFormatter;
 
 class RegisteredUserController extends Controller
 {
@@ -103,6 +104,6 @@ class RegisteredUserController extends Controller
 
         DB::commit();
 
-        return response()->json(["success" => true, "message" => "berhasil daftar"]);
+        return ResponseJsonFormatter::SendReponse(200, true, "berhasil daftar");
     }
 }

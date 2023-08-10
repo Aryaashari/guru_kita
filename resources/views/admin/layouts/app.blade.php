@@ -6,6 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title-web')</title>
 
@@ -15,8 +16,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  
+  <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}">
 </head>
 <body class="hold-transition sidebar-mini">
+  
+
+
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -191,6 +197,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
+{{-- Loading Animation --}}
+<div class="overlay d-none" id="loadingAnimation">
+  <div class="middle">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+      <div class="bar bar3"></div>
+      <div class="bar bar4"></div>
+      <div class="bar bar5"></div>
+      <div class="bar bar6"></div>
+      <div class="bar bar7"></div>
+      <div class="bar bar8"></div>
+  </div>
+</div>
+
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
@@ -201,6 +221,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script> 
+  let loadingAnimation = $("#loadingAnimation")[0];
+</script>
 
 @stack('script')
 </body>
