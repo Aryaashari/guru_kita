@@ -96,7 +96,6 @@ class RegisteredUserController extends Controller
             'tempat_lahir' => $request->tempatLahir,
             'tanggal_lahir' => $request->tanggalLahir,
             'no_telp' => $request->noTelp,
-            'foto_profile' => "default.png",
             'jenis_kelamin' => $request->jenisKelamin
         ]);
         

@@ -20,7 +20,7 @@ class ClassroomController extends Controller
 
         $classroom = Auth::user()->teacher->classroom;
 
-        return view('admin/guru/kelas/kelas', compact('classroom'));
+        return view('admin/wali_kelas/kelas/kelas', compact('classroom'));
     }
 
     public function update(Request $request): JsonResponse {

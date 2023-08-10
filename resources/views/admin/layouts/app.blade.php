@@ -133,6 +133,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
 
+          <li class="nav-item mb-2">
+            <a href="{{ route('profil') }}" class="nav-link {{ request()->is("profil") ? "active" : "" }}">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Profil saya
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <p>
