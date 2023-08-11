@@ -446,8 +446,11 @@
                     formData.append("alamatSekolah", inputAlamatSekolah.value.trim());
                     formData.append("namaKepalaSekolah", inputNamaKepalaSekolah.value.trim());
                     formData.append("nipKepalaSekolah", inputNipKepalaSekolah.value.trim());
-                    formData.append("logoSekolah", inputLogoSekolah.files[0]);
                     formData.append("_method", "PUT");
+
+                    if (inputLogoSekolah.files[0] != null) {
+                        formData.append("logoSekolah", inputLogoSekolah.files[0]);
+                    }
 
                     await fetch("/kelas", {
                         method: "POST",
