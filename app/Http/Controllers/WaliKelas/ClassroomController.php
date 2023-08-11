@@ -36,10 +36,8 @@ class ClassroomController extends Controller
         ]);
 
         if ($validator->fails()) {
-            ResponseJsonFormatter::SendReponse(400, false, "validasi gagal", null, $validator->errors());
+            return ResponseJsonFormatter::SendReponse(400, false, "validasi gagal", null, $validator->errors());
         }
-
-        // dd($request->file("logoSekolah"));
 
         $classroom = Auth::user()->teacher->classroom;
 

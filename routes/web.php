@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
     // Profil
     Route::get("/profil", [ProfilController::class, "index"])->name("profil");
+    Route::put("/profil", [ProfilController::class, "update"])->name("profil.update");
 
     // Kelas
     Route::get('/kelas', [ClassroomController::class, 'index'])->name('kelas.index');
