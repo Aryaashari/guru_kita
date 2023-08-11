@@ -81,7 +81,7 @@
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group">
                                     <label for="namaKelas">Nama Kelas</label>
-                                    <input type="text" value="{{ $classroom->nama ?? '' }}" class="form-control" id="namaKelas" name="namaKelas" placeholder="Masukkan nama kelas">
+                                    <input type="text" value="{{ $classroom->nama ?? '' }}" data-default="{{ $classroom->nama ?? '' }}" class="form-control" id="namaKelas" name="namaKelas" placeholder="Masukkan nama kelas">
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group">
                                     <label for="jurusanKelas">Jurusan Kelas</label>
-                                    <input type="text" value="{{ $classroom->jurusan ?? '' }}" class="form-control" id="jurusanKelas" name="jurusanKelas" placeholder="Masukkan jurusan kelas">
+                                    <input type="text" value="{{ $classroom->jurusan ?? '' }}" data-default="{{ $classroom->jurusan ?? '' }}" class="form-control" id="jurusanKelas" name="jurusanKelas" placeholder="Masukkan jurusan kelas">
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group">
                                     <label for="namaSekolah">Nama Sekolah</label>
-                                    <input type="text" value="{{ $classroom->nama_sekolah ?? '' }}" class="form-control" id="namaSekolah" name="namaSekolah" placeholder="Masukkan nama sekolah">
+                                    <input type="text" value="{{ $classroom->nama_sekolah ?? '' }}" data-default="{{ $classroom->nama_sekolah ?? '' }}" class="form-control" id="namaSekolah" name="namaSekolah" placeholder="Masukkan nama sekolah">
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group">
                                     <label for="npsn">NPSN Sekolah</label>
-                                    <input type="text" value="{{ $classroom->npsn ?? '' }}" class="form-control" id="npsn" name="npsn" placeholder="Masukkan NPSN sekolah">
+                                    <input type="text" value="{{ $classroom->npsn ?? '' }}" data-default="{{ $classroom->npsn ?? '' }}" class="form-control" id="npsn" name="npsn" placeholder="Masukkan NPSN sekolah">
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group">
                                     <label for="akreditasiSekolah">Akreditasi Sekolah</label>
-                                    <select class="form-control" id="akreditasiSekolah" name="akreditasiSekolah">
+                                    <select class="form-control" id="akreditasiSekolah" name="akreditasiSekolah" data-default="{{ $classroom->akreditasi }}">
                                         <option value="">Pilih akreditasi</option>
                                         <option value="A" {{ $classroom->akreditasi == "A" ? "selected" : "" }}>A</option>
                                         <option value="B" {{ $classroom->akreditasi == "B" ? "selected" : "" }}>B</option>
@@ -131,7 +131,7 @@
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group">
                                     <label for="namaKepalaSekolah">Nama Kepala Sekolah</label>
-                                    <input type="text" value="{{ $classroom->nama_kepala_sekolah ?? '' }}" class="form-control" id="namaKepalaSekolah" name="namaKepalaSekolah" placeholder="Masukkan nama kepala sekolah">
+                                    <input type="text" value="{{ $classroom->nama_kepala_sekolah ?? '' }}" data-default="{{ $classroom->nama_kepala_sekolah ?? '' }}" class="form-control" id="namaKepalaSekolah" name="namaKepalaSekolah" placeholder="Masukkan nama kepala sekolah">
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group">
                                     <label for="nipKepalaSekolah">NIP Kepala Sekolah</label>
-                                    <input type="text" value="{{ $classroom->nip_kepala_sekolah ?? '' }}" class="form-control" id="nipKepalaSekolah" name="nipKepalaSekolah" placeholder="Masukkan nip kepala sekolah">
+                                    <input type="text" value="{{ $classroom->nip_kepala_sekolah ?? '' }}" data-default="{{ $classroom->nip_kepala_sekolah ?? '' }}" class="form-control" id="nipKepalaSekolah" name="nipKepalaSekolah" placeholder="Masukkan nip kepala sekolah">
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label>Alamat Sekolah</label>
-                                    <textarea class="form-control" name="alamatSekolah" id="alamatSekolah" placeholder="Masukkan alamat sekolah">{{ $classroom->alamat ?? '' }}</textarea>
+                                    <textarea class="form-control" name="alamatSekolah" data-default="{{ $classroom->nip_kepala_sekolah ?? '' }}" id="alamatSekolah" placeholder="Masukkan alamat sekolah">{{ $classroom->alamat ?? '' }}</textarea>
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
@@ -225,16 +225,7 @@
             inputLogoSekolah.addEventListener("change", () => {
                 fileLogo = inputLogoSekolah.files[0];
                 inputLogoSekolah.nextElementSibling.innerText = fileLogo.name;
-            })
-
-
-            // simpan value awal nilai input form
-            let valueNamaKelas = inputNamaKelas.value.trim();
-            let valueJurusanKelas = inputJurusanKelas.value.trim();
-            let valueNamaSekolah = inputNamaSekolah.value.trim();
-            let valueNpsnSekolah = inputNpsnSekolah.value.trim();
-            let valueAkreditasiSekolah = inputAkreditasiSekolah.value.trim();
-
+            });
 
             btnEdit.addEventListener("click", () => {
                 detailDataArea.classList.add("d-none");
@@ -242,8 +233,43 @@
 
             });
 
+
+            function clearValidasiEffect() {
+                inputNamaKelas.classList.remove("is-invalid");
+                inputNamaKelas.nextElementSibling.classList.remove("d-block");
+                inputNamaKelas.nextElementSibling.innerText = "";
+
+                inputJurusanKelas.classList.remove("is-invalid");
+                inputJurusanKelas.nextElementSibling.classList.remove("d-block");
+                inputJurusanKelas.nextElementSibling.innerText = "";
+            
+                inputNamaSekolah.classList.remove("is-invalid");
+                inputNamaSekolah.nextElementSibling.classList.remove("d-block");
+                inputNamaSekolah.nextElementSibling.innerText = "";
+            
+                inputNpsnSekolah.classList.remove("is-invalid");
+                inputNpsnSekolah.nextElementSibling.classList.remove("d-block");
+                inputNpsnSekolah.nextElementSibling.innerText = "";
+            
+                inputAkreditasiSekolah.classList.remove("is-invalid");
+                inputAkreditasiSekolah.nextElementSibling.classList.remove("d-block");
+                inputAkreditasiSekolah.nextElementSibling.innerText = "";
+            
+                inputNamaKepalaSekolah.classList.remove("is-invalid");
+                inputNamaKepalaSekolah.nextElementSibling.classList.remove("d-block");
+                inputNamaKepalaSekolah.nextElementSibling.innerText = "";
+            
+                inputNipKepalaSekolah.classList.remove("is-invalid");
+                inputNipKepalaSekolah.nextElementSibling.classList.remove("d-block");
+                inputNipKepalaSekolah.nextElementSibling.innerText = "";
+            
+                inputLogoSekolah.classList.remove("is-invalid");
+                inputLogoSekolah.nextElementSibling.nextElementSibling.classList.remove("d-block");
+                inputLogoSekolah.nextElementSibling.nextElementSibling.innerText = "";
+            }
+
             btnKembali.addEventListener("click", () => {
-                if (valueNamaKelas == "" || valueJurusanKelas == "" || valueNamaSekolah == "" || valueNpsnSekolah == "" || valueAkreditasiSekolah == "") {
+                if (inputNamaKelas.dataset.default == "" || inputJurusanKelas.dataset.default == "" || inputNamaSekolah.dataset.default == "" || inputNpsnSekolah.dataset.default == "" || inputAkreditasiSekolah.dataset.default == "") {
                     Swal.fire({
                         title: 'Anda yakin?',
                         icon: 'warning',
@@ -265,6 +291,21 @@
                     detailDataArea.classList.remove("d-none");
                     editDataArea.classList.add("d-none");
                 }
+
+                // clear validasi effect
+                clearValidasiEffect();
+                
+                // reset input form ke defult value
+                inputNamaKelas.value = inputNamaKelas.dataset.default;
+                inputJurusanKelas.value = inputJurusanKelas.dataset.default;
+                inputNpsnSekolah.value = inputNpsnSekolah.dataset.default;
+                inputNamaSekolah.value = inputNamaSekolah.dataset.default;
+                inputAkreditasiSekolah.value = inputAkreditasiSekolah.dataset.default;
+                inputNamaKepalaSekolah.value = inputNamaKepalaSekolah.dataset.default;
+                inputNipKepalaSekolah.value = inputNipKepalaSekolah.dataset.default;
+                inputAlamatSekolah.value = inputAlamatSekolah.dataset.default;
+                inputLogoSekolah.nextElementSibling.innerText = "Pilih file";
+                inputLogoSekolah.value = '';
             });
             
             
@@ -279,39 +320,9 @@
                 let errNipKepalaSekolah = "";
                 let errLogoSekolah = "";
 
-
-                // clear validasi efek
-                inputNamaKelas.classList.remove("is-invalid");
-                inputNamaKelas.nextElementSibling.classList.remove("d-block");
-                inputNamaKelas.nextElementSibling.innerText = errNamaKelas;
-
-                inputJurusanKelas.classList.remove("is-invalid");
-                inputJurusanKelas.nextElementSibling.classList.remove("d-block");
-                inputJurusanKelas.nextElementSibling.innerText = errJurusanKelas;
-            
-                inputNamaSekolah.classList.remove("is-invalid");
-                inputNamaSekolah.nextElementSibling.classList.remove("d-block");
-                inputNamaSekolah.nextElementSibling.innerText = errNamaSekolah;
-            
-                inputNpsnSekolah.classList.remove("is-invalid");
-                inputNpsnSekolah.nextElementSibling.classList.remove("d-block");
-                inputNpsnSekolah.nextElementSibling.innerText = errNpsnSekolah;
-            
-                inputAkreditasiSekolah.classList.remove("is-invalid");
-                inputAkreditasiSekolah.nextElementSibling.classList.remove("d-block");
-                inputAkreditasiSekolah.nextElementSibling.innerText = errAkreditasiSekolah;
-            
-                inputNamaKepalaSekolah.classList.remove("is-invalid");
-                inputNamaKepalaSekolah.nextElementSibling.classList.remove("d-block");
-                inputNamaKepalaSekolah.nextElementSibling.innerText = errNamaKepalaSekolah;
-            
-                inputNipKepalaSekolah.classList.remove("is-invalid");
-                inputNipKepalaSekolah.nextElementSibling.classList.remove("d-block");
-                inputNipKepalaSekolah.nextElementSibling.innerText = errNipKepalaSekolah;
-            
-                inputLogoSekolah.classList.remove("is-invalid");
-                inputLogoSekolah.nextElementSibling.nextElementSibling.classList.remove("d-block");
-                inputLogoSekolah.nextElementSibling.nextElementSibling.innerText = errLogoSekolah;
+                
+                // clear validasi effect
+                clearValidasiEffect();
                 
                 // validasi nama kelas
                 if (inputNamaKelas.value.trim() == "") {
@@ -449,12 +460,15 @@
                     .then(result => {
                         if (result.success && result.code == 200) {
 
-                            // update value form
-                            valueNamaKelas = result.data.nama;
-                            valueJurusanKelas = result.data.jurusan;
-                            valueNamaSekolah = result.data.nama_sekolah;
-                            valueNpsnSekolah = result.data.npsn;
-                            valueAkreditasiSekolah = result.data.akreditasi;
+                            // update default value form
+                            inputNamaKelas.dataset.default = result.data.nama;
+                            inputJurusanKelas.dataset.default = result.data.jurusan;
+                            inputNamaSekolah.dataset.default = result.data.nama_sekolah;
+                            inputNpsnSekolah.dataset.default = result.data.npsn;
+                            inputAkreditasiSekolah.dataset.default = result.data.akreditasi;
+                            inputNamaKepalaSekolah.dataset.default = result.data.nama_kepala_sekolah;
+                            inputNipKepalaSekolah.dataset.default = result.data.nip_kepala_sekolah;
+                            inputAlamatSekolah.dataset.default = result.data.alamat;
 
                             // update detail area
                             detailNamaKelas.innerText = (result.data.nama == null) ? ": -" : ": "+ result.data.nama;
@@ -473,6 +487,7 @@
 
                             // clear innert text logo sekolah
                             inputLogoSekolah.nextElementSibling.innerText = "Pilih file";
+                            inputLogoSekolah.value = '';
 
                             Swal.fire({
                                 icon: 'success',
