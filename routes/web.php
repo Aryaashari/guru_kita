@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\WaliKelas\StudentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WaliKelas\ClassroomController;
 use App\Http\Controllers\WaliKelas\ProfileController;
@@ -45,6 +46,10 @@ Route::middleware('auth')->group(function () {
     // Kelas
     Route::get('/kelas', [ClassroomController::class, 'index'])->name('kelas.index');
     Route::put('/kelas', [ClassroomController::class, 'update'])->name('kelas.update');
+
+    // Siswa
+    Route::get("/siswa", [StudentController::class, "index"])->name("siswa");
+    Route::get("/siswa/get", [StudentController::class, "getDataSiswa"])->name("siswa.getData");
 });
 
 require __DIR__.'/auth.php';

@@ -18,6 +18,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   
   <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}">
+
+  @stack('style')
 </head>
 <body class="hold-transition sidebar-mini">
   
@@ -157,7 +159,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route("siswa") }}" class="nav-link {{ request()->is("siswa") ? "active" : "" }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Siswa</p>
                 </a>
