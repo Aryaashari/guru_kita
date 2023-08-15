@@ -159,7 +159,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route("siswa") }}" class="nav-link {{ request()->is("siswa") ? "active" : "" }}">
+                <a href="{{ route("siswa") }}" class="nav-link {{ request()->is("siswa*") ? "active" : "" }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Siswa</p>
                 </a>

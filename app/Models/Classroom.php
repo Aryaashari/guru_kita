@@ -26,4 +26,8 @@ class Classroom extends Model
     public function teacher() {
         return $this->hasOne(Teacher::class);
     }
+
+    public function students() {
+        return $this->hasMany(Student::class);
+    }
 }
