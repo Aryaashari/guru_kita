@@ -11,7 +11,10 @@
 @endpush
 
 @section('content')
-    
+
+@if (session("message"))
+    {{ session("message") }}
+@endif
 
 <div class="row">
     <div class="col-12">
@@ -110,11 +113,12 @@
                     info: "",
                 },
 
-                // "scrollX": true,
-                // "autoWidth": false,
-
             });
+
+
+            
 
         });
     </script>
+
 @endpush

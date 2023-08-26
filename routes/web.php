@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     // Siswa
     Route::get("/siswa", [StudentController::class, "index"])->name("siswa");
     Route::get("/siswa/tambah", [StudentController::class, "create"])->name("siswa.tambah.get");
+    Route::post("/siswa", [StudentController::class, "store"])->name("siswa.post");
     Route::get("/siswa/{id}", [StudentController::class, "detail"])->name("siswa.detail");
     Route::get("/siswa/get", [StudentController::class, "getDataSiswa"])->name("siswa.getData");
 });
