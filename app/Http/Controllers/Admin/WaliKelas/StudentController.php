@@ -43,6 +43,63 @@ class StudentController extends Controller
 
     public function store(Request $request) {
 
+        $request->validate(
+            [
+                "nama" => "required|regex:/^[a-zA-Z\s]+$/",
+                "nis" => "required|regex:/^[0-9]+$/",
+                "nisn" => "required|regex:/^[0-9]+$/",
+                "tempatLahir" => "required|regex:/^[a-zA-Z\s]+$/",
+                "tanggalLahir" => "required",
+                "jenisKelamin" => "required",
+                "noTelp" => "nullable|regex:/^[0-9]+$/|digits_between:10,12",
+                "namaAyah" => "nullable|regex:/^[a-zA-Z\s]+$/",
+                "pekerjaanAyah" => "nullable|regex:/^[a-zA-Z\s]+$/",
+                "noTelpAyah" => "nullable|regex:/^[0-9]+$/|digits_between:10,12",
+                "namaIbu" => "nullable|regex:/^[a-zA-Z\s]+$/",
+                "pekerjaanIbu" => "nullable|regex:/^[a-zA-Z\s]+$/",
+                "noTelpIbu" => "nullable|regex:/^[0-9]+$/|digits_between:10,12",
+                "namaWali" => "nullable|regex:/^[a-zA-Z\s]+$/",
+                "pekerjaanWali" => "nullable|regex:/^[a-zA-Z\s]+$/",
+                "noTelpWali" => "nullable|regex:/^[0-9]+$/|digits_between:10,12",
+            ],
+
+            [
+                "nama.required" => "Anda belum memasukkan nama siswa",
+                "nama.regex" => "Nama hanya boleh karakter (a-z, A-Z, dan spasi)",
+
+                "nis.required" => "Anda belum memasukkan nis siswa",
+                "nis.regex" => "NIS hanya boleh karakter (0-9)",
+
+                "nisn.required" => "Anda belum memasukkan nisn siswa",
+                "nisn.regex" => "NISN hanya boleh karakter (0-9)",
+
+                "tempatLahir.required" => "Anda belum memasukkan tempat lahir siswa",
+                "tempatLahir.regex" => "Tempat lahir hanya boleh karakter (a-z, A-Z, dan spasi)",
+
+                "tanggalLahir.required" => "Anda belum memasukkan tanggal lahir siswa",
+
+                "jenisKelamin.required" => "Anda belum memasukkan jenis kelamin siswa",
+
+                "noTelp.regex" => "No telp\WA hanya boleh karakter (0-9)",
+                "noTelp.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+
+                "namaAyah.regex" => "Nama ayah hanya boleh karakter (a-z, A-Z, dan spasi)",
+                "pekerjaanAyah.regex" => "Pekerjaan ayah hanya boleh karakter (a-z, A-Z, dan spasi)",
+                "noTelpAyah.regex" => "No telp\WA hanya boleh karakter (0-9)",
+                "noTelpAyah.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+
+                "namaIbu.regex" => "Nama ibu hanya boleh karakter (a-z, A-Z, dan spasi)",
+                "pekerjaanIbu.regex" => "Pekerjaan ibu hanya boleh karakter (a-z, A-Z, dan spasi)",
+                "noTelpIbu.regex" => "No telp\WA hanya boleh karakter (0-9)",
+                "noTelpIbu.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+
+                "namaWali.regex" => "Nama wali hanya boleh karakter (a-z, A-Z, dan spasi)",
+                "pekerjaanWali.regex" => "Pekerjaan wali hanya boleh karakter (a-z, A-Z, dan spasi)",
+                "noTelpWali.regex" => "No telp\WA hanya boleh karakter (0-9)",
+                "noTelpWali.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+            ]
+        );
+
         $classroomId = Auth::user()->teacher->classroom_id;
 
         $student = Student::create([
