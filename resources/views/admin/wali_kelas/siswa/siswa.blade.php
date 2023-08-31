@@ -12,9 +12,7 @@
 
 @section('content')
 
-@if (session("message"))
-    {{ session("message") }}
-@endif
+
 
 <div class="row">
     <div class="col-12">
@@ -52,7 +50,7 @@
                                         </button>
                                         <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, -164px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="top-start">
                                           <a class="dropdown-item" href="#">Lihat detail</a>
-                                          <a class="dropdown-item" href="#">Edit data</a>
+                                          <a class="dropdown-item" href="/siswa/edit/{{ $student->id }}">Edit data</a>
                                           <a class="dropdown-item" href="#">Hapus data</a>
                                         </div>
                                     </div>
@@ -120,5 +118,17 @@
 
         });
     </script>
+
+    @if (session("message"))
+    <script>
+        let msg = `{{ session("message") }}`
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: msg
+        });
+    </script>
+    @endif
 
 @endpush
