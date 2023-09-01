@@ -33,8 +33,8 @@ class StudentController extends Controller
 
 
     public function detail(string $id) {
-        // $student = Student::where("id", $id);
-        // dd($student);
+        $student = Student::findOrFail($id);
+        return view("admin/wali_kelas/siswa/detail", compact("student"));
     }
 
 
@@ -225,7 +225,7 @@ class StudentController extends Controller
             ]   
         );
 
-        return redirect("/siswa")->with("message", "Berhasil edit data!");
+        return redirect("/siswa/".$student->id)->with("message", "Berhasil edit data!");
 
     }
 

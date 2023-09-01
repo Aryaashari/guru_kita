@@ -8,7 +8,7 @@
 
 <div class="card">
     <div class="card-header">
-        <a href="{{ route("siswa") }}" class="btn btn-secondary">Kembali</a>
+        <a href="#" onclick="window.history.back()" class="btn btn-secondary">Kembali</a>
         <a href="#" class="btn btn-primary" id="simpan">Simpan</a>
     </div>
     <div class="card-body">
@@ -226,5 +226,17 @@
 
         });
     </script>
+
+    @if (session("message"))
+    <script>
+        let msg = `{{ session("message") }}`
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: msg
+        });
+    </script>
+    @endif
 
 @endpush
