@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\WaliKelas;
 
+use App\Helper\ResponseJsonFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\Student;
@@ -225,6 +226,18 @@ class StudentController extends Controller
         );
 
         return redirect("/siswa")->with("message", "Berhasil edit data!");
+
+    }
+
+    public function delete(string $id) {
+        try {
+
+            $student = Student::findOrFail($id);
+            $student->delete();
+            return ResponseJsonFormatter::SendReponse(200, true, "delete data successfully");
+        } catch(\Exception $e) {
+            abort(500);
+        }
 
     }
 

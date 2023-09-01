@@ -51,7 +51,7 @@
                                         <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, -164px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="top-start">
                                           <a class="dropdown-item" href="#">Lihat detail</a>
                                           <a class="dropdown-item" href="/siswa/edit/{{ $student->id }}">Edit data</a>
-                                          <a class="dropdown-item" href="#">Hapus data</a>
+                                          <button class="dropdown-item btnHapus" data-id="{{ $student->id }}">Hapus data</button>
                                         </div>
                                     </div>
                                 </td>
@@ -114,7 +114,60 @@
             });
 
 
+            // let btnHapus = $("#btnHapus");
+            let formDelete = $("#formDelete")[0];
             
+            $(".btnHapus").on("click", function() {
+                let id = $(this).data("id");
+                let row = $(this).closest("tr");
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Anda yakin?',
+                    text: 'Yakin ingin menghapus data?',
+                    showDenyButton: true,
+                    confirmButtonText: 'Hapus',
+                    denyButtonText: 'Batal'
+                })
+                .then(async (result) => {
+                    loadingAnimation.classList.remove("d-none");
+                    if (result.isConfirmed) {
+                        let formData = new FormData();
+                        formData.append("_method", "DELETE");
+                        await fetch("/siswa/"+id, {
+                            method: "POST",
+                            headers: {
+                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            },
+                            body: formData
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                // Delete data from table
+                                row.remove();
+
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Berhasil hapus data!',
+                                    showConfirmButton: false,
+                                    timer: 1000
+                                })
+                            } else {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'error',
+                                    title: 'Sistem sedang bermasalah, silahkan coba lagi nanti!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        });
+                    }
+                    loadingAnimation.classList.add("d-none");
+                })
+
+            });
 
         });
     </script>

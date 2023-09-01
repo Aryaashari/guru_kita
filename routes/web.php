@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::patch("/siswa/{id}", [StudentController::class, "update"])->name("siswa.update");
     Route::post("/siswa", [StudentController::class, "store"])->name("siswa.post");
     Route::get("/siswa/{id}", [StudentController::class, "detail"])->name("siswa.detail");
-    Route::get("/siswa/get", [StudentController::class, "getDataSiswa"])->name("siswa.getData");
+    Route::delete("/siswa/{id}", [StudentController::class, "delete"])->name("siswa.delete");
 });
 
 require __DIR__.'/auth.php';
