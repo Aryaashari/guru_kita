@@ -129,7 +129,7 @@
                     if (result.isConfirmed) {
                         let formData = new FormData();
                         formData.append("_method", "DELETE");
-                        await fetch("/siswa/"+id, {
+                        await fetch("/guru/mapel/"+id, {
                             method: "POST",
                             headers: {
                                 "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')

@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
 
     // Guru Mapel
     Route::get("/guru/mapel", [SubjectTeacherController::class, "index"])->name("guru_mapel");
+    Route::delete("/guru/mapel/{id}", [SubjectTeacherController::class, "delete"])->name("guru_mapel.delete");
 });
 
 require __DIR__.'/auth.php';
