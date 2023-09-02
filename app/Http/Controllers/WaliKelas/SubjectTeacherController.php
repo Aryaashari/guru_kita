@@ -57,6 +57,14 @@ class SubjectTeacherController extends Controller
 
     }
 
+
+    public function edit(string $id) {
+
+        $subjectTeacher = SubjectTeacher::findOrFail($id);
+        return view("admin/wali_kelas/guru/edit", compact("subjectTeacher"));
+
+    }
+
     public function delete(string $id) {
 
         $subjectTeacher = SubjectTeacher::findOrFail($id);

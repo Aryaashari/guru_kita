@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::get("/guru/mapel", [SubjectTeacherController::class, "index"])->name("guru_mapel");
     Route::get("/guru/mapel/tambah", [SubjectTeacherController::class, "create"])->name("guru_mapel.tambah");
     Route::post("/guru/mapel", [SubjectTeacherController::class, "store"])->name("guru_mapel.post");
+    Route::get("/guru/mapel/edit/{id}", [SubjectTeacherController::class, "edit"])->name("guru_mapel.edit");
+    Route::patch("/guru/mapel/{id}", [SubjectTeacherController::class, "update"])->name("guru_mapel.update");
     Route::delete("/guru/mapel/{id}", [SubjectTeacherController::class, "delete"])->name("guru_mapel.delete");
 });
 

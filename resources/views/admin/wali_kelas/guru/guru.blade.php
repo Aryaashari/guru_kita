@@ -45,7 +45,7 @@
                                           Aksi
                                         </button>
                                         <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, -164px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="top-start">
-                                          <a class="dropdown-item" href="{{ url('/siswa/edit')."/".$subjectTeacher->id }}">Edit data</a>
+                                          <a class="dropdown-item" href="{{ url('/guru/mapel/edit')."/".$subjectTeacher->id }}">Edit data</a>
                                           <button class="dropdown-item btnHapus" data-id="{{ $subjectTeacher->id }}">Hapus data</button>
                                         </div>
                                     </div>
