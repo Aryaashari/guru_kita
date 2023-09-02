@@ -78,4 +78,19 @@
         });
     </script>
 
+    @if (session("message"))
+    <script>
+        let msg = `{{ session("message") }}`
+
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Berhasil!',
+            text: msg,
+            showConfirmButton: false,
+            timer: 1000
+        });
+    </script>
+    @endif
+
 @endpush

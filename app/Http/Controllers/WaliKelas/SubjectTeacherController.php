@@ -65,6 +65,40 @@ class SubjectTeacherController extends Controller
 
     }
 
+    public function update(Request $request, string $id) {
+
+        $request->validate(
+            [
+                "nama" => "required|regex:/^[a-zA-Z\s]+$/",
+                "nip" => "required|regex:/^[0-9]+$/",
+                "noTelp" => "required|regex:/^[0-9]+$/|digits_between:10,12",
+                "jenisKelamin" => "required"
+            ],
+            [
+                "nama.required" => "Anda belum memasukkan nama guru",
+                "nama.regex" => "Nama hanya boleh karakter (a-z, A-Z, dan spasi)",
+
+                "nip.required" => "Anda belum memasukkan nip guru",
+                "nip.regex" => "NIP hanya boleh karakter (0-9)",
+
+                "noTelp.required" => "Anda belum memasukkan no telp/WA",
+                "noTelp.regex" => "No telp/WA hanya boleh karakter (0-9)",
+                "noTelp.digits_between" => "No telp/WA minimal 10 dan maksimal 12 karakter",
+            ]
+        );
+
+        $subjectTeacher = SubjectTeacher::findOrFail($id);
+        $subjectTeacher->update([
+            "nama" => $request->nama,
+            "nip" => $request->nip,
+            "no_telp" => $request->noTelp,
+            "jenis_kelamin" => $request->jenisKelamin
+        ]);
+
+        return back()->with("message", "Berhasil edit data!");
+
+    }
+
     public function delete(string $id) {
 
         $subjectTeacher = SubjectTeacher::findOrFail($id);
