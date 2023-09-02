@@ -81,23 +81,23 @@ class StudentController extends Controller
 
                 "jenisKelamin.required" => "Anda belum memasukkan jenis kelamin siswa",
 
-                "noTelp.regex" => "No telp\WA hanya boleh karakter (0-9)",
-                "noTelp.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+                "noTelp.regex" => "No telp/WA hanya boleh karakter (0-9)",
+                "noTelp.digits_between" => "No telp/WA minimal 10 dan maksimal 12 karakter",
 
                 "namaAyah.regex" => "Nama ayah hanya boleh karakter (a-z, A-Z, dan spasi)",
                 "pekerjaanAyah.regex" => "Pekerjaan ayah hanya boleh karakter (a-z, A-Z, dan spasi)",
-                "noTelpAyah.regex" => "No telp\WA hanya boleh karakter (0-9)",
-                "noTelpAyah.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+                "noTelpAyah.regex" => "No telp/WA hanya boleh karakter (0-9)",
+                "noTelpAyah.digits_between" => "No telp/WA minimal 10 dan maksimal 12 karakter",
 
                 "namaIbu.regex" => "Nama ibu hanya boleh karakter (a-z, A-Z, dan spasi)",
                 "pekerjaanIbu.regex" => "Pekerjaan ibu hanya boleh karakter (a-z, A-Z, dan spasi)",
-                "noTelpIbu.regex" => "No telp\WA hanya boleh karakter (0-9)",
-                "noTelpIbu.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+                "noTelpIbu.regex" => "No telp/WA hanya boleh karakter (0-9)",
+                "noTelpIbu.digits_between" => "No telp/WA minimal 10 dan maksimal 12 karakter",
 
                 "namaWali.regex" => "Nama wali hanya boleh karakter (a-z, A-Z, dan spasi)",
                 "pekerjaanWali.regex" => "Pekerjaan wali hanya boleh karakter (a-z, A-Z, dan spasi)",
-                "noTelpWali.regex" => "No telp\WA hanya boleh karakter (0-9)",
-                "noTelpWali.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+                "noTelpWali.regex" => "No telp/WA hanya boleh karakter (0-9)",
+                "noTelpWali.digits_between" => "No telp/WA minimal 10 dan maksimal 12 karakter",
             ]
         );
 
@@ -179,23 +179,23 @@ class StudentController extends Controller
 
                 "jenisKelamin.required" => "Anda belum memasukkan jenis kelamin siswa",
 
-                "noTelp.regex" => "No telp\WA hanya boleh karakter (0-9)",
-                "noTelp.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+                "noTelp.regex" => "No telp/WA hanya boleh karakter (0-9)",
+                "noTelp.digits_between" => "No telp/WA minimal 10 dan maksimal 12 karakter",
 
                 "namaAyah.regex" => "Nama ayah hanya boleh karakter (a-z, A-Z, dan spasi)",
                 "pekerjaanAyah.regex" => "Pekerjaan ayah hanya boleh karakter (a-z, A-Z, dan spasi)",
-                "noTelpAyah.regex" => "No telp\WA hanya boleh karakter (0-9)",
-                "noTelpAyah.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+                "noTelpAyah.regex" => "No telp/WA hanya boleh karakter (0-9)",
+                "noTelpAyah.digits_between" => "No telp/WA minimal 10 dan maksimal 12 karakter",
 
                 "namaIbu.regex" => "Nama ibu hanya boleh karakter (a-z, A-Z, dan spasi)",
                 "pekerjaanIbu.regex" => "Pekerjaan ibu hanya boleh karakter (a-z, A-Z, dan spasi)",
-                "noTelpIbu.regex" => "No telp\WA hanya boleh karakter (0-9)",
-                "noTelpIbu.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+                "noTelpIbu.regex" => "No telp/WA hanya boleh karakter (0-9)",
+                "noTelpIbu.digits_between" => "No telp/WA minimal 10 dan maksimal 12 karakter",
 
                 "namaWali.regex" => "Nama wali hanya boleh karakter (a-z, A-Z, dan spasi)",
                 "pekerjaanWali.regex" => "Pekerjaan wali hanya boleh karakter (a-z, A-Z, dan spasi)",
-                "noTelpWali.regex" => "No telp\WA hanya boleh karakter (0-9)",
-                "noTelpWali.digits_between" => "No telp\WA minimal 10 dan maksimal 12 karakter",
+                "noTelpWali.regex" => "No telp/WA hanya boleh karakter (0-9)",
+                "noTelpWali.digits_between" => "No telp/WA minimal 10 dan maksimal 12 karakter",
             ]
         );
 

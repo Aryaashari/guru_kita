@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     // Guru Mapel
     Route::get("/guru/mapel", [SubjectTeacherController::class, "index"])->name("guru_mapel");
     Route::get("/guru/mapel/tambah", [SubjectTeacherController::class, "create"])->name("guru_mapel.tambah");
+    Route::post("/guru/mapel", [SubjectTeacherController::class, "store"])->name("guru_mapel.post");
     Route::delete("/guru/mapel/{id}", [SubjectTeacherController::class, "delete"])->name("guru_mapel.delete");
 });
 

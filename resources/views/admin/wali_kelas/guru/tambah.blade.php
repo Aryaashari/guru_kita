@@ -13,7 +13,7 @@
     </div>
     <div class="card-body">
 
-        <form action="{{ url("/guru_mapel") }}" method="POST" id="formTambah">
+        <form action="{{ url("/guru/mapel") }}" method="POST" id="formTambah">
             @csrf
             <div class="row mb-4">
                 <div class="col-12 col-md-6">
