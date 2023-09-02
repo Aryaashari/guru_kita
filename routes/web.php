@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WaliKelas\ClassroomController;
 use App\Http\Controllers\WaliKelas\ProfileController;
 use App\Http\Controllers\WaliKelas\ProfilController;
+use App\Http\Controllers\WaliKelas\SubjectTeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +56,10 @@ Route::middleware('auth')->group(function () {
     Route::post("/siswa", [StudentController::class, "store"])->name("siswa.post");
     Route::get("/siswa/{id}", [StudentController::class, "detail"])->name("siswa.detail");
     Route::delete("/siswa/{id}", [StudentController::class, "delete"])->name("siswa.delete");
+
+
+    // Guru Mapel
+    Route::get("/guru/mapel", [SubjectTeacherController::class, "index"])->name("guru_mapel");
 });
 
 require __DIR__.'/auth.php';

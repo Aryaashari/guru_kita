@@ -164,6 +164,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Siswa</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route("guru_mapel") }}" class="nav-link {{ request()->is("guru/mapel*") ? "active" : "" }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Guru Mapel</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
