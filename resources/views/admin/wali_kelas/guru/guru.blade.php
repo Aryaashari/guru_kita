@@ -19,10 +19,10 @@
 
         <div class="card">
             <div class="card-header">
-                <a class="btn btn-primary" href="{{ route("siswa.tambah.get") }}">Tambah data</a>
+                <a class="btn btn-primary" href="{{ route("guru_mapel.tambah") }}">Tambah data</a>
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-striped dtr-inline display" id="tableSiswa">
+                <table class="table table-bordered table-striped dtr-inline display" id="tableGuruMapel">
                     <thead>
                         <tr>
                             <th>Nama</th>
@@ -86,11 +86,11 @@
     <script>
         $(document).ready(function() {
 
-            // let tableSiswa = $("#tableSiswa")[0];
+            // let tableGuruMapel = $("#tableGuruMapel")[0];
 
-            // let tableSiswa = new DataTable("#tableSiswa");
+            // let tableGuruMapel = new DataTable("#tableGuruMapel");
 
-            $("#tableSiswa").DataTable({
+            $("#tableGuruMapel").DataTable({
                 paging: true,
                 responsive: true,
                 language: {

@@ -17,11 +17,15 @@ class SubjectTeacherController extends Controller
         return view("admin/wali_kelas/guru/guru", compact("subjectTeachers"));
     }
 
+    public function create() {
+        return view("admin/wali_kelas/guru/tambah");
+    }
+
     public function delete(string $id) {
 
         $subjectTeacher = SubjectTeacher::findOrFail($id);
         $subjectTeacher->delete();
-        
+
         return ResponseJsonFormatter::SendReponse(200, true, "berhasil delete");
 
     }
